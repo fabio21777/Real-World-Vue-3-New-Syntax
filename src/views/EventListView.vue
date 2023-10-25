@@ -18,6 +18,7 @@ onMounted(() => {
     events.value = null
     EventService.getEvents(2, page.value)
       .then((response) => {
+        console.log(response)
         events.value = response.data
         totalEvents.value = response.headers['x-total-count']
       })

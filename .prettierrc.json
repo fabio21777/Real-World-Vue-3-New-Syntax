@@ -1,4 +1,6 @@
 {
   "singleQuote": true,
-  "semi": false
+  "semi": false,
+  "vue/component-definition-name-casing": "off"
+
 }
