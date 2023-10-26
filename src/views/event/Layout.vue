@@ -1,10 +1,14 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import { onMounted, ref, defineProps, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import EventService from '../../services/EventService'
 
 const props = defineProps(['id'])
 
 const id = computed(() => props.id)
+
+const router = useRouter()
 
 const event = ref(null)
 onMounted(() => {
@@ -13,7 +17,14 @@ onMounted(() => {
       event.value = response.data
     })
     .catch((error) => {
-      console.log(error)
+      if (error.response && error.response.status == 404) {
+        router.push({
+          name: '404Resource',
+          params: { resource: 'event' },
+        })
+      } else {
+        router.push({ name: 'NetworkError' })
+      }
     })
 })
 </script>

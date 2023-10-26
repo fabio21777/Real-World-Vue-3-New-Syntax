@@ -11,4 +11,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  rules: {
+    'vue/component-definition-name-casing': 'off', // Desativa a regra para nomeação de componentes
+  },
 }
