@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import EventListView from '../views/EventListView.vue'
-import AboutView from '../views/AboutView.vue'
 import ExtraStuffView from '../views/ExtraStuff.view.vue'
 import EventLayout from '../views/event/Layout.vue'
 import EventDetails from '../views/event/Details.vue'
@@ -37,13 +36,14 @@ const router = createRouter({
           path: 'edit',
           name: 'EventEdit',
           component: EventEdit,
+          meta: { requireAuth: true },
         },
       ],
     },
     {
       path: '/about',
       name: 'about',
-      component: AboutView,
+      component: () => import('../views/AboutView.vue'),
       alias: '/about-us',
     },
     {
@@ -75,6 +75,34 @@ const router = createRouter({
       component: NetworkError,
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      // <----
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
 })
+
+router.beforeEach((to, from, next) => {
+  // Suponha que você tenha uma função 'isUserAuthenticated' que verifica se o usuário está autenticado
+  const isAuthenticated = isUserAuthenticated()
+
+  if (to.meta.requireAuth && !isAuthenticated) {
+    alert('Você não está autenticado')
+    // Se a rota requer autenticação e o usuário não está autenticado:
+    // Redirecionar para a página de login ou mostrar uma mensagem de erro
+    next('/') // Redireciona para a página de login
+  } else {
+    // Se a rota não requer autenticação ou o usuário está autenticado:
+    next() // Continue a navegação
+  }
+})
+
+function isUserAuthenticated() {
+  // Exemplo: Verificar se há um token JWT no armazenamento local
+  return false
+}
 
 export default router

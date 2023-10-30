@@ -21,7 +21,7 @@ defineProps({
 
 <style scoped>
 .event-card {
-  padding: 20px;
+  padding: 200px;
   width: 250px;
   cursor: pointer;
   border: 1px solid #39495c;
