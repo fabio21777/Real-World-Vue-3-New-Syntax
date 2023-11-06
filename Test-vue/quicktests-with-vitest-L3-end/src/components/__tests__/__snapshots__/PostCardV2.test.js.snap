@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`componente de card versão 2 > created posts renders correctly 1`] = `
+"<div>
+  <h1>First Post</h1>
+  <p>This is my first simple post</p>
+</div>"
+`;
+
+exports[`componente de card versão 2 > criar primeiro post 1`] = `
+"<div>
+  <h1>primeiro post</h1>
+  <p>conteudo do primeiro post</p>
+</div>"
+`;

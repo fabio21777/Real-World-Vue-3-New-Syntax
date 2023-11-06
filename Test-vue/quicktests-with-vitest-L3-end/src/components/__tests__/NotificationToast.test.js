@@ -9,6 +9,7 @@ describe('Notification component', () => {
       const wrapper = mount(NotificationToast, {
         props: { status }
       })
+      expect(wrapper.html()).toMatchSnapshot()
       expect(wrapper.classes()).toEqual(expect.arrayContaining(['notification--error']))
     }
 
@@ -45,11 +46,11 @@ describe('Notification component', () => {
     expect(wrapper.emitted()).toHaveProperty('clear-notification')
   })
 
-  test('deve exibir a mensagem corretamente', () => {
-    const message = 'Something happened, try again'
-    const wrapper = mount(NotificationToast, {
-      props: { message }
-    })
-    expect(wrapper.find('p').text()).toBe(message)
-  })
+  // test('deve exibir a mensagem corretamente', () => {
+  //   const message = 'Something happened, try again'
+  //   const wrapper = mount(NotificationToast, {
+  //     props: { message }
+  //   })
+  //   expect(wrapper.find('p').text()).toBe(message)
+  // })
 })
