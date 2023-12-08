@@ -1,6 +1,7 @@
 <template>
   <label v-if="label">{{ label }}</label>
   <input
+    v-bind="$attrs"
     type="text"
     :placeholder="label"
     class="field"
