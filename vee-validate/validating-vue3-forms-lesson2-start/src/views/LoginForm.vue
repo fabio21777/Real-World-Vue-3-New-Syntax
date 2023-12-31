@@ -14,8 +14,9 @@
       <BaseInput
         label="Title"
         type="text"
-        v-model="title"
+        :modelValue="title"
         :error="errors.title"
+          @change="handleChange"
         :required="true"
       />
 
@@ -98,15 +99,15 @@ export default {
   setup () {
     const validationSchema = object({
       category: string().required(),
-      title: string().required('A cool title is required').min(3),
-      description: string().required(),
+      title: string().required('A cool title is required').min(3, 'Title must be at least 3 characters'),
+      description: string().required().min(10, 'Description must be at least 10 characters'),
       location: string(),
       pets: number(),
       catering: boolean(),
       music: boolean()
     })
 
-    const { handleSubmit, errors } = useForm({
+    const { handleSubmit, errors, setFieldValue } = useForm({
       validationSchema,
       initialValues: {
         pets: 1,
@@ -126,6 +127,10 @@ export default {
     const { value: catering } = useField('catering')
     const { value: music } = useField('music')
 
+    const handleChange = (event) => {
+      setFieldValue('title', event.target.value)
+    }
+
     return {
       category,
       title,
@@ -135,7 +140,8 @@ export default {
       catering,
       music,
       submit,
-      errors
+      errors,
+      handleChange
     }
   }
 }
