@@ -3,7 +3,7 @@
     v-if="label"
     :for="uuid"
   >
-    {{ label }}
+    {{ label }} {{ required ? ' *' : '' }}
   </label>
   <select
     class="field"
@@ -54,6 +54,10 @@ export default {
     },
     modelValue: {
       type: [String, Number]
+    },
+    required: {
+      type: Boolean,
+      default: false
     }
   },
   setup (props, context) {

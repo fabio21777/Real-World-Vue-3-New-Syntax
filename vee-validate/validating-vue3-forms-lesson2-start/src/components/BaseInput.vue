@@ -3,7 +3,7 @@
     v-if="label"
     :for="uuid"
   >
-    {{ label }}
+    {{ label }} {{ required ? '*' : '' }}
   </label>
   <input
     class="field"
@@ -12,6 +12,7 @@
       onInput: updateValue
     }"
     :id="uuid"
+    autocomplete="off"
     :value="modelValue"
     :placeholder="label"
     :aria-describedby="error ? `${uuid}-error` : null"
@@ -43,6 +44,10 @@ export default {
     modelValue: {
       type: [String, Number],
       default: ''
+    },
+    required: {
+      type: Boolean,
+      default: false
     }
   },
   setup (props, context) {
