@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import fetchCount from './fetchCount' // a mock fetch function
+import { reactive } from 'vue'
+import Counter from './components/Counter.vue'
 
 interface AppInfo {
-  name: string
+  name: string,
   slogan: string
 }
 
@@ -12,20 +12,6 @@ const appInfo: AppInfo = reactive({
   slogan: 'an app you can count on'
 })
 
-const count = ref<number | null>(null)
-
-onMounted(() => {
-  fetchCount((initialCount) => {
-    count.value = initialCount
-  })
-})
-
-function addCount(num: number) {
-  if (count.value !== null) {
-    count.value += num
-  }
-}
-
 </script>
 
 <template>
@@ -33,8 +19,7 @@ function addCount(num: number) {
     <h1>{{ appInfo.name }}</h1>
     <h2>{{ appInfo.slogan }}</h2>
   </div>
-  <p>{{ count }}</p>
-  <p>
-    <button @click="addCount(1)">Add</button>
-  </p>
+  <Counter 
+    :limit="10"
+  ></Counter>
 </template>
