@@ -5,7 +5,7 @@
     <section class="articles">
       <div class="column is-8 is-offset-2">
         <div class="card article">
-          <NuxtLink to="/blog/my-second-blog-post">
+          <NuxtLink to="/blog/post2">
             <section class="blog-post-card card article">
               <div class="media">
                 <div class="media-content has-text-centered">
@@ -24,7 +24,7 @@
           </NuxtLink>
         </div>
         <div class="card article">
-          <NuxtLink to="/blog/my-first-blog-post">
+          <NuxtLink to="/blog/post1">
             <section class="blog-post-card card article">
               <div class="media">
                 <div class="media-content has-text-centered">
