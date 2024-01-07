@@ -1,5 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ['@nuxt/content']
+  modules: ['@nuxt/content'],
+  content: {
+    highlight: {
+      theme: 'github-light'
+    }
+  }
 })
